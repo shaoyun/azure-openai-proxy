@@ -152,6 +152,17 @@ func Proxy(c *gin.Context, requestConverter RequestConverter) {
 			return
 		}
 
+		// 增加user_api_key的逻辑，防止三方应用获取到真实的KEY，以便随时切断KEY
+		user_api_key := C.UserApiKey
+		if user_api_key != "" {
+			rawToken := req.Header.Get("Authorization")
+			user_token := strings.TrimPrefix(rawToken, "Bearer ")
+			if user_token != user_api_key {
+				util.SendError(c, errors.New("token is invalid"))
+				return
+			}
+		}
+
 		// get auth token from header or deployemnt config
 		token := deployment.ApiKey
 		if token == "" {

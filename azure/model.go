@@ -22,7 +22,8 @@ type DeploymentConfig struct {
 }
 
 type Config struct {
-	ApiBase          string             `yaml:"api_base" mapstructure:"api_base"`                   // if you use openai、langchain as sdk, it will be useful
+	ApiBase          string             `yaml:"api_base" mapstructure:"api_base"` // if you use openai、langchain as sdk, it will be useful
+	UserApiKey       string             `yaml:"user_api_key" mapstructure:"user_api_key"`
 	DeploymentConfig []DeploymentConfig `yaml:"deployment_config" mapstructure:"deployment_config"` // deployment config
 }
 

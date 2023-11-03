@@ -1,4 +1,5 @@
 api_base: "/v1"
+user_api_key: "111"
 deployment_config:
   - deployment_name: "xxx"
     model_name: "text-davinci-003"
